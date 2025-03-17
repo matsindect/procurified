@@ -41,7 +41,14 @@ PUT /expressions/:id: Recalculate a specific expression.
 
 ## Database Configuration
 
-Make sure to configure your PostgreSQL database connection in `dbConfig/dbConnection.js` before starting the server.
+Make sure to configure your PostgreSQL database connection in `./config.env` before starting the server.
+```
+DB_USER=your_db_user
+DB_HOST=localhost
+DB_DATABASE=your_db_name
+DB_PASSWORD=your_db_password
+DB_PORT=5432
+```
 
 ## Contributing
 
