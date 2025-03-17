@@ -4,6 +4,10 @@ const {
 } = require("../../dbConfig/dbConnection");
 
 class ResourceDao {
+/**
+ * Creates an instance of the resources DAO.
+ * Initializes the connection pool using the default pool instance.
+ */
   constructor() {
     this.pool = defaultPoolInstance.getPool();
   }
