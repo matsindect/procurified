@@ -1,4 +1,4 @@
-# Procucified Project
+# Procurified Project
 
 This project is a Node.js application that uses Express to create a web server and connects to a PostgreSQL database.
 
