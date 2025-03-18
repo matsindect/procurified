@@ -1,5 +1,7 @@
 // db.js - Database connection pool module
 const { Pool } = require('pg');
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
 const {DB_USER, DB_HOST, DB_DATABASE, DB_PASSWORD, DB_PORT} = process.env;
  
 // Configure PostgreSQL connection options
@@ -10,7 +12,7 @@ const defaultConfig = {
   password: DB_PASSWORD,
   port: DB_PORT,
 };
-
+console.log(defaultConfig);
 class PostgresPool {
   constructor(config = {}) {
     // Merge default config with any provided config
