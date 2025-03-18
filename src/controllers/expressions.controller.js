@@ -65,9 +65,27 @@ class ExpressionsController {
     }
 
     /**
+     * Update the value of the variable with the specified ID
+     */
+
+    async updateVariableValue(req, res) {
+        try {
+            // Extract the variable ID and new value from the request body
+            const { id, value } = req.body;
+
+            // Update the variable value using the DAO
+            await this.expressionsDao.updateVariableValue(id, value);
+
+            // Send a success response back to the client
+            res.send('Variable updated successfully');
+        } catch (error) {
+            // Send an error response if there is an issue updating the variable value
+            res.status(500).send('Error updating variable value');
+        }
+    }
+
+    /**
      * Recalculate all calculations that reference a specific variable
-     * 
-     * 
      */
     
     async recalculateCalculation(req, res) {

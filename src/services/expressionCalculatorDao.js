@@ -161,6 +161,26 @@ class ExpressionCalculatorDao {
   }
 
   /**
+   * Update the value of a variable
+   * @param {number} variableId - ID of the variable to update
+   * @param {number} value - New value for the variable
+   * @returns {Promise<void>}
+   */
+  async updateVariableValue(variableId, value) {
+    try {
+      let client = await this.pool.connect();
+      const query = "UPDATE variables SET value = $1 WHERE id = $2";
+      await client.query(query, [value, variableId]);
+      client.release();
+      // Recalculate all calculations that reference this variable
+      await this.recalculate(variableId);
+    } catch (error) {
+      console.error(`Error updating variable ${variableId}:`, error);
+      throw error;
+    }
+  }
+
+  /**
    * Recalculate all calculations that reference a specific variable
    * @param {number} variableId - ID of the variable that was updated
    * @returns {Promise<Array>} Array of updated calculation results

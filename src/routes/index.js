@@ -38,6 +38,9 @@ const setRoutes = (app) => {
     .route("/expressions/:id")
     .get(expressionsController.getAllExpressions.bind(expressionsController))
     .put(expressionsController.recalculateCalculation.bind(expressionsController));
+    router
+    .route("/expressions")
+    .post(expressionsController.updateVariableValue.bind(expressionsController));
 
   app.use("/", router);
 };
