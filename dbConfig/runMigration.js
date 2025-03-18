@@ -94,8 +94,7 @@ class Migration {
 
       // Set up test data
       await this.setupTestData();
-      // End the procurifieddb pool
-      await defaultPoolInstance.close();
+      
       console.log("Migration completed successfully");
     } catch (err) {
       console.error("Error during migration:", err);
@@ -136,11 +135,14 @@ class Migration {
       `);
       // Insert sample resources
       await client.query(`
-        INSERT INTO singleresource (id, name, "parentId")
-        VALUES 
-          (1, 'Resource A', NULL),
-          (2, 'Resource B', 1),
-          (3, 'Resource C', 2)
+        INSERT INTO singleresource (id, name, "parentId") VALUES
+        (1, 'Root', NULL),
+        (2, 'Child A', 1),
+        (3, 'Child B', 1),
+        (4, 'Grandchild A1', 2),
+        (5, 'Grandchild A2', 2),
+        (6, 'GreatGrandchild A1.1', 4),
+        (7, 'GreatGrandchild A1.2', 4)
         ON CONFLICT (id) DO NOTHING;
       `);
       
